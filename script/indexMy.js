@@ -60,7 +60,7 @@ $.ajax({
                     $('#wrapper').append('<div class="swiper-slide"><div class="animal" style="background: -webkit-linear-gradient(left top,' +
                         indexAnimal.colorBegin + ',' + indexAnimal.colorEnd + ')"id="a1"><a href="details.html?resourceId=' + indexAnimal.resourceId +
                         '"><img data-src="http://www.dadpat.com/' + indexAnimal.image.cover.attUrl +
-                        '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><audio name="'+indexAnimal.resourceId+'" src="http://www.dadpat.com/'+indexAnimal.audio[audioRandom].attUrl +'" ></audio><img  src="image/voiced.png" class="swiperes" alt=""/><a onclick="opendetails(' +
+                        '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><span name="'+indexAnimal.resourceId+'" id="http://www.dadpat.com/'+indexAnimal.audio[audioRandom].attUrl +'" ></span><img  src="image/voiced.png" class="swiperes" alt=""/><a onclick="opendetails(' +
                         indexAnimal.resourceId + ')">' + indexAnimal.resourceTitle + '</a></div><p class="animalInfo">'+indexAnimal.simpleDesc+'</p></div></div>');
                     $('.animal').css({
                         'width': Math.floor(0.73 * docuWidth),
@@ -87,10 +87,20 @@ $.ajax({
                         'bottom':'4.6rem'
                     });
                     window.onload=function(){
-                        var allAudio=$(".voice audio");
-                        console.log(allAudio);
+                        var allAudio=$(".voice span");
+                        console.log(allAudio[0].id);
                         // console.log(allId);
-                        allAudio[0].play();
+                        if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
+                            window.location.href = "goofypapa://playAudio," + allAudio[0].id;
+                        }else if( typeof( window.android ) != "undefined" ) {
+                            window.android.initMusic(allAudio[0].id);
+                            window.android.startMusic();
+                        }else{
+                            console.log(allAudio[0].id);
+                        }
+                        // allAudio[0].play();
+                        // window.android.initMusic(allAudio[0].src);
+                        // window.android.startMusic();
                         var swiper = new Swiper('.swiper-container', {
                             loop:true,
                             lazy: {
@@ -115,28 +125,37 @@ $.ajax({
                                             if(swiper.realIndex!=0){
                                                 allAudio[swiper.realIndex].src="http://www.dadpat.com/"+data.data.audio[randomA].attUrl +"";
                                             }
-                                            if(swiper.realIndex==0){
-                                                // allAudio[0].play();
-                                                window.android.initMusic(allAudio[0].src);
+                                            if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
+                                                window.location.href='goofypapa://stopAllAudio';
+                                                window.location.href = "goofypapa://playAudio," + allAudio[swiper.realIndex].id;
+                                            }else if( typeof( window.android ) != "undefined" ) {
+                                                window.android.pauseMusic();
+                                                window.android.initMusic(allAudio[swiper.realIndex].id);
                                                 window.android.startMusic();
-                                                allAudio[swiper.realIndex+1].pause();
-                                                allAudio[swiper.realIndex+1].currentTime = 0;
-                                            }else if(swiper.realIndex==11){
-                                                // allAudio[swiper.realIndex].play();
-                                                window.android.initMusic(allAudio[swiper.realIndex].src);
-                                                window.android.startMusic();
-                                                allAudio[swiper.realIndex-1].pause();
-                                                allAudio[swiper.realIndex-1].currentTime = 0;
+                                            }else{
+                                                console.log(allAudio[swiper.realIndex].id);
                                             }
-                                            else{
-                                                // allAudio[swiper.realIndex].play();
-                                                window.android.initMusic(allAudio[swiper.realIndex].src);
-                                                window.android.startMusic();
-                                                allAudio[swiper.realIndex+1].pause();
-                                                allAudio[swiper.realIndex+1].currentTime = 0;
-                                                allAudio[swiper.realIndex-1].pause();
-                                                allAudio[swiper.realIndex-1].currentTime = 0;
-                                            }
+                                            // if(swiper.realIndex==0){
+                                            //     // allAudio[0].play();
+                                            //
+                                            //     allAudio[swiper.realIndex+1].pause();
+                                            //     allAudio[swiper.realIndex+1].currentTime = 0;
+                                            // }else if(swiper.realIndex==11){
+                                            //     allAudio[swiper.realIndex].play();
+                                            //     // window.android.initMusic(allAudio[swiper.realIndex].src);
+                                            //     // window.android.startMusic();
+                                            //     allAudio[swiper.realIndex-1].pause();
+                                            //     allAudio[swiper.realIndex-1].currentTime = 0;
+                                            // }
+                                            // else{
+                                            //     allAudio[swiper.realIndex].play();
+                                            //     // window.android.initMusic(allAudio[swiper.realIndex].src);
+                                            //     // window.android.startMusic();
+                                            //     allAudio[swiper.realIndex+1].pause();
+                                            //     allAudio[swiper.realIndex+1].currentTime = 0;
+                                            //     allAudio[swiper.realIndex-1].pause();
+                                            //     allAudio[swiper.realIndex-1].currentTime = 0;
+                                            // }
                                         }
                                     });
                                     // allAudio[this.realIndex].src="http://www.dadpat.com/"+indexAnimal.audio[randomA].attUrl +"";
