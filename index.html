@@ -46,7 +46,11 @@
 
 <!--强制竖屏-->
 <script>
-    window.android.setScreenOrientation(0);
+    if( typeof(window.android) != "undefined" )
+    {
+        window.android.setScreenOrientation(0);
+    }
+    
     $("#footer").click(function () {
         window.location.href="zooBK.html";
     })
