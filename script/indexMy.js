@@ -127,18 +127,22 @@ $.ajax({
                                             }
                                             if(swiper.realIndex==0){
                                                 // allAudio[0].play();
-
+                                                console.log($(".swiper-slide-active audio").attr("src"));
+                                                $(".swiper-slide-active audio")[0].play();
                                                 allAudio[swiper.realIndex+1].pause();
                                                 allAudio[swiper.realIndex+1].currentTime = 0;
                                             }else if(swiper.realIndex==11){
-                                                allAudio[swiper.realIndex].play();
+                                                $(".swiper-slide-active audio")[0].play();
+                                                // allAudio[swiper.realIndex].play();
                                                 // window.android.initMusic(allAudio[swiper.realIndex].src);
                                                 // window.android.startMusic();
                                                 allAudio[swiper.realIndex-1].pause();
                                                 allAudio[swiper.realIndex-1].currentTime = 0;
                                             }
                                             else{
-                                                allAudio[swiper.realIndex].play();
+                                                $(".swiper-slide-active audio")[0].play();
+                                                console.log($(".swiper-slide-active audio").attr("src"));
+                                                // allAudio[swiper.realIndex].play();
                                                 // window.android.initMusic(allAudio[swiper.realIndex].src);
                                                 // window.android.startMusic();
                                                 allAudio[swiper.realIndex+1].pause();
