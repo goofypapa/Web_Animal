@@ -67,7 +67,7 @@ window.onload = function()
                         var t_item = $('<div class="swiper-slide"><div class="animal" style="background: -webkit-linear-gradient(left top,' +
                         indexAnimal.colorBegin + ',' + indexAnimal.colorEnd + ')"id="a1"><a href="details.html?resourceId=' + indexAnimal.resourceId +
                         '"><img data-src="http://www.dadpat.com/' + indexAnimal.image.cover.attUrl +
-                        '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><span style="display:none;" name="'+indexAnimal.resourceId+'">http://www.dadpat.com/'+indexAnimal.audio[audioRandom].attUrl +'</span><img  src="image/voiced.png" class="swiperes" alt=""/><a onclick="opendetails(' +
+                        '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><span id="'+indexAnimal.audio.length+'" style="display:none;" name="'+indexAnimal.resourceId+'">http://www.dadpat.com/'+indexAnimal.audio[audioRandom].attUrl +'</span><img  src="image/voiced.png" class="swiperes" alt=""/><a onclick="opendetails(' +
                         indexAnimal.resourceId + ')">' + indexAnimal.resourceTitle + '</a></div><p class="animalInfo">'+indexAnimal.simpleDesc+'</p></div></div>');
                     
 
@@ -123,7 +123,7 @@ function loadSuccess( indexAnimal ){
     if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
         window.location.href = "goofypapa://playAudio," + allAudio[0].innerHTML;
     }else if( typeof( window.android ) != "undefined" ) {
-        window.android.initMusic(allAudio[0].src);
+        window.android.initMusic(allAudio[0].innerHTML);
         window.android.startMusic();
     }else{
         console.log(allAudio[0].innerHTML);
@@ -135,7 +135,8 @@ function loadSuccess( indexAnimal ){
         },
         on:{
             slideChangeTransitionEnd:function(){
-                var randomA=Math.floor(Math.random()*(indexAnimal.audio.length));
+                var randomA=Math.floor(Math.random()*(allAudio[this.realIndex].id));
+                console.log(allAudio[this.realIndex].id);
                 console.log(randomA);
                 console.log(allAudio[this.realIndex]);
                 var randomAnimalId=allAudio[this.realIndex].getAttribute("name") ;
@@ -168,7 +169,7 @@ function loadSuccess( indexAnimal ){
         if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
             window.location.href = "goofypapa://stopAllAudio;playAudio," + $(this).prev()[0].innerHTML;
         }else if( typeof( window.android ) != "undefined" ) {
-            window.android.initMusic(allAudio[0].src);
+            window.android.initMusic($(this).prev()[0].innerHTML);
             window.android.startMusic();
         }else{
             console.log($(this).prev()[0].innerHTML);
