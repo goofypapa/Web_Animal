@@ -125,8 +125,8 @@ function myPlayAudio( p_url ) {
             isAudoPlay = false;
         });
     }else if( typeof( window.android ) != "undefined" ) {
-        window.android.initMusic( p_url );
-        window.android.startMusic();
+        // window.android.initMusic( p_url );
+        // window.android.startMusic();
     }else{
         console.log( "play audio: ", p_url );
     }
@@ -137,8 +137,8 @@ function loadSuccess( indexAnimal ){
     if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
         window.location.href = "goofypapa://playAudio," + allAudio[0].innerHTML;
     }else if( typeof( window.android ) != "undefined" ) {
-        window.android.initMusic(allAudio[0].innerHTML);
-        window.android.startMusic();
+        // window.android.initMusic(allAudio[0].innerHTML);
+        // window.android.startMusic();
     }else{
         console.log(allAudio[0].innerHTML);
     }
@@ -183,53 +183,33 @@ function loadSuccess( indexAnimal ){
                 isAudoPlay = true;
                 goofypapaStopAllAndPlayAudio( $(this).prev()[0].innerHTML, function(){
                     // t_playState2.innerHTML = "false";
-                    $(this).attr('src', 'image/gif.gif');
+
+                    $(".voice>img").attr('src', 'image/voiced.png');
                     isAudoPlay = false;
                 } );
                 // t_playState2.innerHTML = "true";
-                $(".voice>img").attr('src', 'image/voiced.png');
+                $(this).attr('src', 'image/gif.gif');
             }
             // window.location.href = "goofypapa://stopAllAudio;playAudio," + $(this).prev()[0].innerHTML;
         }else if( typeof( window.android ) != "undefined" ) {
-            if(!window.android.isMusicPlaying()){
-                window.android.initMusic($(this).prev()[0].innerHTML);
-                window.android.startMusic();
-                $(this).attr('src', 'image/gif.gif');
-                window.android.initMusic($(this).prev()[0].innerHTML,function playCompleteCallBack(){
-                    $(this).attr('src', 'image/voiced.png');
-                });
-            }else{
-                window.android.pauseMusic();
-                $(this).attr('src', 'image/voiced.png');
-            }
-
+            // if(!window.android.isMusicPlaying()){
+            //     window.android.initMusic($(this).prev()[0].innerHTML);
+            //     window.android.startMusic();
+            //     $(this).attr('src', 'image/gif.gif');
+            //     // window.android.initMusic($(this).prev()[0].innerHTML,function playCompleteCallBack(){
+            //     //     $(this).attr('src', 'image/voiced.png');
+            //     // });
+            // }else{
+            //     window.android.pauseMusic();
+            //     $(this).attr('src', 'image/voiced.png');
+            // }
+            // window.android.initMusic($(this).prev()[0].innerHTML);
+            // window.android.startMusic();
         }else{
             console.log($(this).prev()[0].innerHTML);
         }
     });
-    // ios停止函数
-    function goofypapaStopAllAudio()
-    {
-        for( var item in __sm_playAudioPool )
-        {
-            __audioFinishCallBack(item);
-        }
-        __sm_playAudioPool = {};
 
-        window.location.href = "goofypapa://stopAllAudio";
-    }
-    function goofypapaStopAllAndPlayAudio( p_audio_url, p_finish_call_back )
-    {
-
-        for( var item in __sm_playAudioPool )
-        {
-            __audioFinishCallBack(item);
-        }
-        __sm_playAudioPool = {};
-
-        __sm_playAudioPool[p_audio_url] = p_finish_call_back;
-        window.location.href = "goofypapa://stopAllAudio;playAudio," + p_audio_url + ",playFinishCallBack";
-    }
 }
 
 //调用Android退出app
