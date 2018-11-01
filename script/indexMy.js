@@ -6,7 +6,7 @@ function GetQueryString(name) {
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
 }
-
+var isAudoPlay = false;
 window.onload = function()
 {
 
@@ -118,6 +118,20 @@ window.onload = function()
 
 }
 
+function myPlayAudio( p_url ) {
+    if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
+        isAudoPlay = true;
+        goofypapaStopAllAndPlayAudio( p_url, function () {
+            isAudoPlay = false;
+        });
+    }else if( typeof( window.android ) != "undefined" ) {
+        window.android.initMusic( p_url );
+        window.android.startMusic();
+    }else{
+        console.log( "play audio: ", p_url );
+    }
+}
+
 function loadSuccess( indexAnimal ){
     var allAudio=$(".voice span");
     if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
@@ -150,31 +164,72 @@ function loadSuccess( indexAnimal ){
                     success: function (data) {
                         console.log(data.data);
                         console.log(randomA);
-
-                        if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
-                            window.location.href = "goofypapa://stopAllAudio;playAudio," + allAudio[swiper.realIndex].innerHTML;
-                        }else if( typeof( window.android ) != "undefined" ) {
-                            window.android.initMusic(allAudio[0].src);
-                            window.android.startMusic();
-                        }else{
-                            console.log(allAudio[swiper.realIndex].innerHTML);
-                        }
+                        myPlayAudio( allAudio[swiper.realIndex].innerHTML );
                     }
                 });
             }
         }
     });
-    $(".voice>img").click(function(){
 
+
+    $(".voice>img").click(function(){
+        $(this).attr('src', 'image/gif.gif');
         if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
-            window.location.href = "goofypapa://stopAllAudio;playAudio," + $(this).prev()[0].innerHTML;
+            if( isAudoPlay )
+            {
+                goofypapaStopAllAudio();
+                $(this).attr('src', 'image/voiced.png');
+            }else{
+                isAudoPlay = true;
+                goofypapaStopAllAndPlayAudio( $(this).prev()[0].innerHTML, function(){
+                    // t_playState2.innerHTML = "false";
+                    $(this).attr('src', 'image/gif.gif');
+                    isAudoPlay = false;
+                } );
+                // t_playState2.innerHTML = "true";
+                $(".voice>img").attr('src', 'image/voiced.png');
+            }
+            // window.location.href = "goofypapa://stopAllAudio;playAudio," + $(this).prev()[0].innerHTML;
         }else if( typeof( window.android ) != "undefined" ) {
-            window.android.initMusic($(this).prev()[0].innerHTML);
-            window.android.startMusic();
+            if(!window.android.isMusicPlaying()){
+                window.android.initMusic($(this).prev()[0].innerHTML);
+                window.android.startMusic();
+                $(this).attr('src', 'image/gif.gif');
+                window.android.initMusic($(this).prev()[0].innerHTML,function playCompleteCallBack(){
+                    $(this).attr('src', 'image/voiced.png');
+                });
+            }else{
+                window.android.pauseMusic();
+                $(this).attr('src', 'image/voiced.png');
+            }
+
         }else{
             console.log($(this).prev()[0].innerHTML);
         }
-    });   
+    });
+    // ios停止函数
+    function goofypapaStopAllAudio()
+    {
+        for( var item in __sm_playAudioPool )
+        {
+            __audioFinishCallBack(item);
+        }
+        __sm_playAudioPool = {};
+
+        window.location.href = "goofypapa://stopAllAudio";
+    }
+    function goofypapaStopAllAndPlayAudio( p_audio_url, p_finish_call_back )
+    {
+
+        for( var item in __sm_playAudioPool )
+        {
+            __audioFinishCallBack(item);
+        }
+        __sm_playAudioPool = {};
+
+        __sm_playAudioPool[p_audio_url] = p_finish_call_back;
+        window.location.href = "goofypapa://stopAllAudio;playAudio," + p_audio_url + ",playFinishCallBack";
+    }
 }
 
 //调用Android退出app
