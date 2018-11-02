@@ -123,24 +123,18 @@ function myPlayAudio( p_url ) {
         if( isAudoPlay )
         {
             goofypapaStopAllAudio();
-            $(this).attr('src', 'image/voiced.png');
+            $(".swiper-slide-active .voice>img").attr('src', 'image/voiced.png');
+            isAudoPlay = false;
         }else{
             isAudoPlay = true;
             goofypapaStopAllAndPlayAudio( p_url, function(){
-                // t_playState2.innerHTML = "false";
-
-                $(".voice>img").attr('src', 'image/voiced.png');
+                $(".swiper-slide-active .voice>img").attr('src', 'image/voiced.png');
                 isAudoPlay = false;
             } );
-            // t_playState2.innerHTML = "true";
-            $(this).attr('src', 'image/gif.gif');
+            $(".swiper-slide-active .voice>img").attr('src', 'image/gif.gif');
         }
-        // isAudoPlay = true;
-        // goofypapaStopAllAndPlayAudio( p_url, function () {
-        //     isAudoPlay = false;
-        // });
     }else if( typeof( window.android ) != "undefined" ) {
-        if(window.android.isMusicPlaying()){
+            if(window.android.isMusicPlaying()){
             alert("111");
             window.android.pauseMusic();
             // $(this).attr('src', 'image/voiced.png');
@@ -149,7 +143,7 @@ function myPlayAudio( p_url ) {
             // window.android.initMusic( p_url ,function playCompleteCallBack(){
             //     $(".voice>img").attr('src', 'image/voiced.png');
             //     isAudoPlay = false;
-                播放完成得回调
+                // 播放完成得回调
             // } );
             window.android.startMusic();
             $(this).attr('src', 'image/gif.gif');
@@ -162,8 +156,12 @@ function myPlayAudio( p_url ) {
     }
 }
 
-goofypapaInit = function () {
-    window.location.href = "goofypapa://playAudio," + allAudio[0].innerHTML;
+function goofypapaInit() {
+    isAudoPlay = true;
+    goofypapaStopAllAndPlayAudio( $(".swiper-slide-active .voice span")[0].innerHTML, function(){
+        $(".swiper-slide-active .voice>img").attr('src', 'image/voiced.png');
+        isAudoPlay = false;
+    } );
 }
 
 function loadSuccess( indexAnimal ){
