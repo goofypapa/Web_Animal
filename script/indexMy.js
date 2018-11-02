@@ -67,7 +67,7 @@ window.onload = function()
                         var t_item = $('<div class="swiper-slide"><div class="animal" style="background: -webkit-linear-gradient(left top,' +
                         indexAnimal.colorBegin + ',' + indexAnimal.colorEnd + ')"id="a1"><a href="details.html?resourceId=' + indexAnimal.resourceId +
                         '"><img data-src="http://www.dadpat.com/' + indexAnimal.image.cover.attUrl +
-                        '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><span id="'+indexAnimal.audio.length+'" style="display:none;" name="'+indexAnimal.resourceId+'">http://www.dadpat.com/'+indexAnimal.audio[audioRandom].attUrl +'</span><img  src="image/voiced.png" class="swiperes" alt=""/><a onclick="opendetails(' +
+                        '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><span id="'+indexAnimal.audio.length+'" style="display:none;" name="'+indexAnimal.resourceId+'">http://www.dadpat.com/'+indexAnimal.audio[audioRandom].attUrl +'</span><img  src="image/gif.gif" class="swiperes" alt=""/><a onclick="opendetails(' +
                         indexAnimal.resourceId + ')">' + indexAnimal.resourceTitle + '</a></div><p class="animalInfo">'+indexAnimal.simpleDesc+'</p></div></div>');
                     
 
@@ -120,11 +120,41 @@ window.onload = function()
 
 function myPlayAudio( p_url ) {
     if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
-        isAudoPlay = true;
-        goofypapaStopAllAndPlayAudio( p_url, function () {
-            isAudoPlay = false;
-        });
+        if( isAudoPlay )
+        {
+            goofypapaStopAllAudio();
+            $(this).attr('src', 'image/voiced.png');
+        }else{
+            isAudoPlay = true;
+            goofypapaStopAllAndPlayAudio( p_url, function(){
+                // t_playState2.innerHTML = "false";
+
+                $(".voice>img").attr('src', 'image/voiced.png');
+                isAudoPlay = false;
+            } );
+            // t_playState2.innerHTML = "true";
+            $(this).attr('src', 'image/gif.gif');
+        }
+        // isAudoPlay = true;
+        // goofypapaStopAllAndPlayAudio( p_url, function () {
+        //     isAudoPlay = false;
+        // });
     }else if( typeof( window.android ) != "undefined" ) {
+        if(window.android.isMusicPlaying()){
+            alert("111");
+            window.android.pauseMusic();
+            // $(this).attr('src', 'image/voiced.png');
+        }else{
+            isAudoPlay = true;
+            // window.android.initMusic( p_url ,function playCompleteCallBack(){
+            //     $(".voice>img").attr('src', 'image/voiced.png');
+            //     isAudoPlay = false;
+                播放完成得回调
+            // } );
+            window.android.startMusic();
+            $(this).attr('src', 'image/gif.gif');
+        }
+
         // window.android.initMusic( p_url );
         // window.android.startMusic();
     }else{
@@ -132,13 +162,20 @@ function myPlayAudio( p_url ) {
     }
 }
 
+goofypapaInit = function () {
+    window.location.href = "goofypapa://playAudio," + allAudio[0].innerHTML;
+}
+
 function loadSuccess( indexAnimal ){
     var allAudio=$(".voice span");
     if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
         window.location.href = "goofypapa://playAudio," + allAudio[0].innerHTML;
     }else if( typeof( window.android ) != "undefined" ) {
+        window.android.initMusic(allAudio[0].innerHTML,function playCompleteCallBack(){
+            //播放完成得回调
+        } );
         // window.android.initMusic(allAudio[0].innerHTML);
-        // window.android.startMusic();
+        window.android.startMusic();
     }else{
         console.log(allAudio[0].innerHTML);
     }
@@ -173,7 +210,7 @@ function loadSuccess( indexAnimal ){
 
 
     $(".voice>img").click(function(){
-        $(this).attr('src', 'image/gif.gif');
+        // $(this).attr('src', 'image/gif.gif');
         if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
             if( isAudoPlay )
             {

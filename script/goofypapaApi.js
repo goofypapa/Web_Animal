@@ -104,7 +104,7 @@ function goofypapaStopAllAndPlayAudio( p_audio_url, p_finish_call_back )
     __sm_playAudioPool = {};
 
     __sm_playAudioPool[p_audio_url] = p_finish_call_back;
-    window.location.href = "goofypapa://stopAllAudio;playAudio," + p_audio_url + ",playFinishCallBack";
+    window.location.href = "goofypapa://stopAllAudio;playAudio," + p_audio_url + ",__audioFinishCallBack";
 }
 
 function goofypapaPost( p_url, p_parameter, p_success_call_back, p_fial_call_back )
