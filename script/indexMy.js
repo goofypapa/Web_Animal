@@ -199,6 +199,7 @@ function loadSuccess( indexAnimal ){
                     success: function (data) {
                         console.log(data.data);
                         console.log(randomA);
+                        isAudoPlay = false;
                         myPlayAudio( allAudio[swiper.realIndex].innerHTML );
                     }
                 });
