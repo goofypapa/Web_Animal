@@ -167,7 +167,7 @@ function goofypapaInit() {
 
 
 function loadSuccess( indexAnimal ){
-    var allAudio=$(".voice span");
+    var allAudioSpan=$(".voice span");
 
     if( typeof( window.android ) != "undefined" ) {
         // android播放首页声音方法
@@ -186,11 +186,12 @@ function loadSuccess( indexAnimal ){
         },
         on:{
             slideChangeTransitionEnd:function(){
-                var randomA=Math.floor(Math.random()*(allAudio[this.realIndex].id));
-                console.log(allAudio[this.realIndex].id);
+                var randomA=Math.floor(Math.random()*(allAudioSpan[this.realIndex].id));
+                console.log(allAudioSpan[this.realIndex]);
+                // var randomA=Math.floor(Math.random()*(allAudio.length));
                 console.log(randomA);
-                console.log(allAudio[this.realIndex]);
-                var randomAnimalId=allAudio[this.realIndex].getAttribute("name") ;
+                console.log(allAudioSpan[this.realIndex]);
+                var randomAnimalId=allAudioSpan[this.realIndex].getAttribute("name") ;
                 console.log(randomAnimalId);
                 $.ajax({
                     type: "post",
@@ -199,10 +200,14 @@ function loadSuccess( indexAnimal ){
                     data: { "resId": randomAnimalId }, //以键/值对的形式
                     async: true,
                     success: function (data) {
-                        console.log(data.data);
+                        var allAudio=data.data.audio;
+                        console.log(data.data.audio);
+                        console.log(allAudio);
                         console.log(randomA);
                         isAudoPlay = false;
-                        myPlayAudio( allAudio[swiper.realIndex].innerHTML );
+                        console.log(swiper.realIndex);
+                        console.log(allAudio[randomA].attUrl);
+                        myPlayAudio( "http://www.dadpat.com/"+allAudio[randomA].attUrl+"");
                     }
                 });
             }
