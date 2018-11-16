@@ -124,7 +124,7 @@ a{ tap-highlight-color: rgba(0,0,0,0);
 #blackShade{
     width: 100%;
     height: 100%;
-    display: block;
+    display: none;
     position: absolute;
     background-color: #000;
     z-index: 1001;

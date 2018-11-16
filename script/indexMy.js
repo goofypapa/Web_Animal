@@ -7,9 +7,14 @@ function GetQueryString(name) {
     if (r != null) return unescape(r[2]); return null;
 }
 var isAudoPlay = false;
+if( window.history.length == 1 ){
+    $("#blackShade").show();
+}
 window.onload = function()
 {
-    $("#blackShade").fadeOut();
+    if( window.history.length == 1 ) {
+        $("#blackShade").fadeOut();
+    }
 
     $('body').css({
         'height': docuHeight,
