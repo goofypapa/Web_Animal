@@ -21,12 +21,12 @@ $.ajax({
         var datas=data.data;
         console.log(datas);
         var windowRealWidth = document.documentElement.clientWidth;
-        for(var i=0;i<datas.image.default.length;i++){
-           $(".content").append('<div class="item"><a href="javascript:;"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.default[i].attId+'.file"/" /></a></div>')
-           $('#wrapper').append('<div class="swiper-slide" style="width: '+windowRealWidth+'"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.default[i].attId+'.file"/></div>');
+        for(var i=0;i<datas.image.defaults.length;i++){
+           $(".content").append('<div class="item"><a href="javascript:;"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file"/" /></a></div>')
+           $('#wrapper').append('<div class="swiper-slide" style="width: '+windowRealWidth+'"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file"/></div>');
         }
 
-        var num = datas.image.default.length;
+        var num = datas.image.defaults.length;
         $(".item img").load(function() {
             num--;
             if (num > 0) {

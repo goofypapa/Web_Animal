@@ -52,16 +52,16 @@ $.ajax({
         }*/
 
         //原先的写法
-        $("#pics").append('<li><a><img src="http://www.dadpat.com/'+datas[0]["image-1"]+
+        $("#pics").append('<li><a><img src="http://www.dadpat.com/'+datas[0].images[1]+
             '" alt=""/><p>'+datas[0].total+'次播放</p></a></li><li style="margin: 0 0.68rem 0 0.68rem"><a><img src="http://www.dadpat.com/'+
-            datas[1]["image-2"]+'" alt=""/><p>'+datas[1].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
-            datas[2]["image-2"]+'" alt=""/><p>'+datas[2].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
-            datas[3]["image-2"]+'" alt=""/><p>'+datas[3].total+'次播放</p></a></li><li style="margin: 0 0.68rem 0 0.68rem"><a><img src="http://www.dadpat.com/'+
-            datas[4]["image-2"]+'" alt=""/><p>'+datas[4].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
-            datas[5]["image-2"]+'" alt=""/><p>'+datas[5].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
-            datas[6]["image-2"]+'" alt=""/><p>'+datas[6].total+'次播放</p></a></li><li style="margin: 0 0.68rem 0 0.68rem"><a><img src="http://www.dadpat.com/'+
-            datas[7]["image-2"]+'" alt=""/><p>'+datas[7].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
-            datas[8]["image-2"]+'" alt=""/><p>'+datas[8].total+'次播放</p></a></li>');
+            datas[1].images[2]+'" alt=""/><p>'+datas[1].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
+            datas[2].images[2]+'" alt=""/><p>'+datas[2].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
+            datas[3].images[2]+'" alt=""/><p>'+datas[3].total+'次播放</p></a></li><li style="margin: 0 0.68rem 0 0.68rem"><a><img src="http://www.dadpat.com/'+
+            datas[4].images[2]+'" alt=""/><p>'+datas[4].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
+            datas[5].images[2]+'" alt=""/><p>'+datas[5].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
+            datas[6].images[2]+'" alt=""/><p>'+datas[6].total+'次播放</p></a></li><li style="margin: 0 0.68rem 0 0.68rem"><a><img src="http://www.dadpat.com/'+
+            datas[7].images[2]+'" alt=""/><p>'+datas[7].total+'次播放</p></a></li><li><a><img src="http://www.dadpat.com/'+
+            datas[8].images[2]+'" alt=""/><p>'+datas[8].total+'次播放</p></a></li>');
 
         $("#pics li").click(function(){
             var index = $(this).index();

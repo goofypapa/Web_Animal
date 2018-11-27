@@ -32,9 +32,9 @@ $.ajax({
         //设置动物轮播图片
         var datas=data.data;
         console.log(data);
-        if(datas.image.banner.length>0){
+        if(datas.image.banners.length>0){
             for(var i=0;i<3;i++){        
-                $("#header .swiper-wrapper").append('<div class="swiper-slide"><img style="width: 100%;" src="http://www.dadpat.com/'+datas.image.banner[i].attUrl+'" alt=""/></div>' );
+                $("#header .swiper-wrapper").append('<div class="swiper-slide"><img style="width: 100%;" src="http://www.dadpat.com/'+datas.image.banners[i].attUrl+'" alt=""/></div>' );
             }  
         }
         
@@ -58,7 +58,7 @@ $.ajax({
         //获取动物声音总条数
         var audioCe=datas.audio;
         var audioAll = [];
-        for(var i=0;i<audioCe.length;i++){           
+        for(var i=0;i<audioCe.length;i++){
             if(audioCe[i].audioType == 'DEFAULT'){
                 audioAll.push(audioCe[i])
             }
@@ -131,7 +131,7 @@ $.ajax({
         console.log()
         //设置动物的图片
         for(var i=0;i<6;i++){
-            $(".container").append('<div class="item"><a href="javascript:;"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.default[i].attId+'.file" alt=""/></a></div>');
+            $(".container").append('<div class="item"><a href="javascript:;"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file" alt=""/></a></div>');
         }
         var num = 6;
         $(".item img").load(function() {
@@ -165,7 +165,7 @@ $.ajax({
 
         //设置更多图片
         $("#Allpics").click(function(){
-            window.location.href="pics.html?resourceId="+myresourceId+"&imgType=default";
+            window.location.href="pics.html?resourceId="+myresourceId+"&imgType=defaults";
         });
     },
     error:function(XMLResponse){
