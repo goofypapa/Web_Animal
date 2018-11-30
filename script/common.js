@@ -86,9 +86,8 @@ function goback111(src) {
 }
 
 function back() {
-    //ios ws
-    if(typeof(goofyPapa_back) === "function"){
-        goofyPapa_back();
+    if(typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
+        window.location.href='goofypapa://back';
         return;
     }
     //android ws
