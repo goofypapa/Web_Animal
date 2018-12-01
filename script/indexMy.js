@@ -72,7 +72,7 @@ window.onload = function()
 
                         var t_item = $('<div class="swiper-slide"><div class="animal" style="background: -webkit-linear-gradient(left top,' +
                         indexAnimal.colorBegin + ',' + indexAnimal.colorEnd + ')"id="a1"><a href="details.html?resourceId=' + indexAnimal.resourceId +
-                        '"><img data-src="http://www.dadpat.com/' + indexAnimal.image.cover.attUrl +
+                        '&imgType=default"><img data-src="http://www.dadpat.com/' + indexAnimal.image.cover.attUrl +
                         '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><span id="'+indexAnimal.audio.length+'" style="display:none;" name="'+indexAnimal.resourceId+'">http://www.dadpat.com/'+indexAnimal.audio[audioRandom].attUrl +'</span><img  src="image/gif.gif" class="swiperes" alt=""/><a onclick="opendetails(' +
                         indexAnimal.resourceId + ')">' + indexAnimal.resourceTitle + '</a></div><p class="animalInfo">'+indexAnimal.simpleDesc+'</p></div></div>');
                     

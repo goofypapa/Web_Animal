@@ -20,6 +20,7 @@ function GetQueryString(name){
 }
 //定义变量接收url参数
 var myresourceId=GetQueryString("resourceId");
+var imgType =GetQueryString("imgType");
 // var myresourceId="8e0111e7b93b3f959a25b9e1eca1af99";
 $.ajax({
     type:"post",

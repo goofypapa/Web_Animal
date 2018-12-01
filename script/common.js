@@ -39,7 +39,7 @@ function openMyWin(str){
 function opendetails(id){
     api.openWin({
         name: 'detailsBG',
-        url:'./html/details.html?resourceId='+id+'',
+        url:'./html/details.html?resourceId='+id+'&imgType=default',
         rect: {
             x: 0,
             y: 0,
@@ -56,12 +56,12 @@ function opendetails(id){
     });
 }
 function detailsPage(myresourceId){
-    window.location.href="details.html?resourceId="+myresourceId;
+    window.location.href="details.html?resourceId="+myresourceId+"&imgType=default";
 }
 function openDP(resourceId){
     api.openWin({
         name: 'detailsBG',
-        url: './bg.html?mySrc=pics&resourceId='+resourceId+'',
+        url: './bg.html?mySrc=pics&resourceId='+resourceId+'&imgType=default',
         rect: {
             x: 0,
             y: 0,
@@ -78,7 +78,7 @@ function openDP(resourceId){
     });
 }
 function openimg(number){
-    window.location.href="img.html?resourceId="+myresourceId+"&myNumber="+number;
+    window.location.href="img.html?resourceId="+myresourceId+"&myNumber="+number+'&imgType=default';
 }
 function goback111(src) {
    // alert();
@@ -86,10 +86,14 @@ function goback111(src) {
 }
 
 function back() {
-    if(typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
-        window.location.href='goofypapa://back';
-        return;
+    
+    if(imgType == null){
+        if(typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
+            window.location.href='goofypapa://back';
+            return;
+        }
     }
+
     //android ws
     if( typeof(goofyPapa) !== "undefined" ){
         goofyPapa.back();
