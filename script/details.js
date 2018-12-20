@@ -21,7 +21,8 @@ function GetQueryString(name){
 //定义变量接收url参数
 var myresourceId=GetQueryString("resourceId");
 var imgType =GetQueryString("imgType");
-// var myresourceId="8e0111e7b93b3f959a25b9e1eca1af99";
+// 测试数据
+var myresourceId="8e0111e7b93b3f959a25b9e1eca1af99";
 $.ajax({
     type:"post",
     url:"http://www.dadpat.com/api/res/get.do",
@@ -44,7 +45,7 @@ $.ajax({
         //设置页面头部动物名称
         $("header p").html(resourceTitle);
         //设置百科图标后动物名称
-        $(".tabs>p>b").html(resourceTitle)
+        $(".tabs>p>b").html(resourceTitle);
         //设置动物的描述资料
         var resourceDesc=datas.resourceDesc;
         $("article>p").html(resourceDesc);
@@ -65,12 +66,28 @@ $.ajax({
             }
             //简介里的声音
             if(audioCe[i].audioType == 'PRON_CN'){
-                $('.audioEnglish').attr('src','http://www.dadpat.com/'+audioCe[i].attUrl)
+                var audioInput = document.createElement("input");
+                audioInput.type="hidden";
+                audioInput.value='http://www.dadpat.com/'+audioCe[i].attUrl;
+                $("article>p").append(audioInput);
+                // $(".audioEnglish").remove();
+                // $('.audioEnglish').attr('src','http://www.dadpat.com/'+audioCe[i].attUrl)
             }
         }
         //点击简介里的声音
         $(".playEnglish").click(function(){
-            $(this).next("audio")[0].play();
+            // $(this).next("audio")[0].play();
+            // console.log($(this).parent("p").children("input").val());
+            var introductionAduio=$(this).parent("p").children("input").val();
+            if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
+                goofypapaStopAllAndPlayAudio( introductionAduio, function(){
+                } );
+            }else if( typeof( window.android ) != "undefined" ) {
+                window.android.initMusic(introductionAduio);
+                window.android.startMusic();
+            }else{
+                console.log( introductionAduio);
+            };
         });
         for(var i=0;i<3;i++){
             if(audioAll.length <= i) break;
@@ -82,49 +99,104 @@ $.ajax({
             }
             var myTime=myDuration>9?"0:"+myDuration:"0:0"+myDuration;
             if(datas.recordTime==null&&datas.recordPlace==null){
-                $("#audio ul").append('<li style="width: 33%;float:left;border-right: 1px solid rgba(255,255,255,0.1);"><p style="margin-top: 0.6rem;">'+[i+1]+'</p><!--动物声音播放动画--><span style="margin-left: 0rem;">'+myTime+'</span><img style="float: left;" src="image/play.png" class="playAudio" alt=""/><audio class="mp3"><source src="http://www.dadpat.com/'+datas.audio[i].attUrl+'" type="audio/ogg"><source src="http://www.dadpat.com/'+datas.audio[i].attUrl+'" type="audio/mpeg"您的浏览器不支持 audio 元素。</audio></li>')
+                $("#audio ul").append('<li style="width: 33%;float:left;border-right: 1px solid rgba(255,255,255,0.1);"><p style="margin-top: 0.6rem;">'+[i+1]+'</p><!--动物声音播放动画--><span style="margin-left: 0rem;">'+myTime+'</span><img style="float: left;" src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="http://www.dadpat.com/'+datas.audio[i].attUrl+'"></li>')
             }else{
-                $("#audio ul").append('<li><p>'+[i+1]+'</p><!--动物声音播放动画--><div class="info"><p><img src="image/time.png" alt=""/><span>'+datas.recordTime+'</span><img src="image/add.png" alt=""/><span>'+datas.recordPlace+'</span></p></div><span>'+myTime+'</span><img src="image/play.png" class="playAudio" alt=""/><audio class="mp3"><source src="http://www.dadpat.com/'+datas.audio[i].attUrl+'" type="audio/ogg"><source src="http://www.dadpat.com/'+datas.audio[i].attUrl+'" type="audio/mpeg"您的浏览器不支持 audio 元素。</audio></li>')
+                $("#audio ul").append('<li><p>'+[i+1]+'</p><!--动物声音播放动画--><div class="info"><p><img src="image/time.png" alt=""/><span>'+datas.recordTime+'</span><img src="image/add.png" alt=""/><span>'+datas.recordPlace+'</span></p></div><span>'+myTime+'</span><img src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="http://www.dadpat.com/'+datas.audio[i].attUrl+'"></li>')
             }
         }
+        // 更改之后的声音播放js
+        var count=0;
+        var t1;
+        $("#audio ul li>img").click(function(){
+           var audioUrl=$(this).next("input").val();
+           var audioTimeO=$(this).prev("span").text();
+           var audioTime=audioTimeO.substr(2,2);
+           audioTime=audioTime.indexOf("0")==0?audioTime.substr(1,1):audioTime;
+           var imgIndex=$(this).parent("li").index();
+           var activeImg=$("#audio ul li>img")[imgIndex];
+           console.log(audioTimeO);
+           console.log(audioTime);
+
+            if(count==0){
+                if( typeof( goofypapaGame ) != "undefined" && goofypapaGame  ){
+                    goofypapaStopAllAndPlayAudio( audioUrl, function(){
+                        $(activeImg).attr("src","image/play.png");
+                        $(activeImg).prev("span").text(audioTimeO);
+                    } );
+                }else if( typeof( window.android ) != "undefined" ) {
+                    window.android.initMusic(audioUrl);
+                    window.android.startMusic();
+                }else{
+                    console.log( audioUrl);
+                }
+                t1=window.setInterval(function(){
+                    if(audioTime!=0){
+                        audioTime-=1;
+                        $(activeImg).prev("span").text("0:0"+audioTime);
+                    }else{
+                        // $(activeImg).attr("src","image/play.png");
+                        $(activeImg).prev("span").text(audioTimeO);
+                    }
+                },1000);
+                $(this).attr("src","image/pause.png");
+                console.log($(this).parent("li").siblings("li").children("img").attr("src"));
+                $(this).parent("li").siblings("li").children("img").attr("src","image/play.png");
+                count=1;
+            }else {
+                count=0;
+                if( typeof( goofypapaGame ) != "undefined" && goofypapaGame ){
+                    goofypapaStopAllAudio();
+                }else if( typeof( window.android ) != "undefined" ) {
+                    window.android.initMusic(audioUrl);
+                    window.android.stoptMusic();
+                }else{
+                    console.log( "停止播放"+audioUrl );
+                }
+                $(this).attr("src","image/play.png");
+                clearInterval(t1);
+            }
+
+        });
+
+
 
         //声音的点击播放、暂停
-        var playAudio = document.querySelectorAll('.playAudio');
-        var audioP = document.querySelectorAll('#audio audio');
-        for(var i=0;i<playAudio.length;i++){
-            if(audioP[i].paused){
-                playAudio[i].onclick=function(){
-                    var path = this.src;
-                    var filename;
-                    if(path.indexOf("/")>0) {
-                        filename=path.substring(path.lastIndexOf("/")+1,path.length).slice(0,-4);
-                    } else {
-                        filename=path;
-                    }
-                    if(filename=='play'){
-                        for(var j=0;j<audioP.length;j++){
-                            audioP[j].pause();
-                            audioP[j].currentTime=0;
-                            playAudio[j].src='image/play.png';
-                        }
-                        $(this)[0].src='image/pause.png';
-                        var audioPlay = this.nextSibling;
-                        audioPlay.play();
-                        var times = Math.ceil($(audioPlay)[0].duration)+'000';
-                        var thisS = this;
-                        setTimeout(function () {
-                            $(thisS)[0].src='image/play.png';
-                        },times);
-                    }else if(filename=='pause'){
-                        for(var j=0;j<audioP.length;j++){
-                            audioP[j].pause();
-                            audioP[j].currentTime=0;
-                            playAudio[j].src='image/play.png';
-                        }
-                    }
-                };
-            }
-        }
+        // var playAudio = document.querySelectorAll('.playAudio');
+        // var audioP = document.querySelectorAll('#audio audio');
+        // for(var i=0;i<playAudio.length;i++){
+        //     if(audioP[i].paused){
+        //         playAudio[i].onclick=function(){
+        //             var path = this.src;
+        //             var filename;
+        //             if(path.indexOf("/")>0) {
+        //                 filename=path.substring(path.lastIndexOf("/")+1,path.length).slice(0,-4);
+        //             } else {
+        //                 filename=path;
+        //             }
+        //             if(filename=='play'){
+        //                 for(var j=0;j<audioP.length;j++){
+        //                     audioP[j].pause();
+        //                     audioP[j].currentTime=0;
+        //                     playAudio[j].src='image/play.png';
+        //                 }
+        //                 $(this)[0].src='image/pause.png';
+        //                 var audioPlay = this.nextSibling;
+        //                 audioPlay.play();
+        //                 var times = Math.ceil($(audioPlay)[0].duration)+'000';
+        //                 var thisS = this;
+        //                 setTimeout(function () {
+        //                     $(thisS)[0].src='image/play.png';
+        //                 },times);
+        //             }else if(filename=='pause'){
+        //                 for(var j=0;j<audioP.length;j++){
+        //                     audioP[j].pause();
+        //                     audioP[j].currentTime=0;
+        //                     playAudio[j].src='image/play.png';
+        //                 }
+        //             }
+        //         };
+        //     }
+        // }
 
         //简笔画模板
         $('.handDrawModel').append('<img src="http://www.dadpat.com/'+datas.image.handDraw.attUrl+'">')
