@@ -22,7 +22,7 @@ function GetQueryString(name){
 var myresourceId=GetQueryString("resourceId");
 var imgType =GetQueryString("imgType");
 // 测试数据
-var myresourceId="8e0111e7b93b3f959a25b9e1eca1af99";
+// var myresourceId="8e0111e7b93b3f959a25b9e1eca1af99";
 $.ajax({
     type:"post",
     url:"http://www.dadpat.com/api/res/get.do",
