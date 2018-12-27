@@ -1,15 +1,4 @@
 //   6图片轮播js
-var mySwiper = new Swiper('#header', {
-    autoplay: {
-        delay:3000
-    },//可选选项，自动滑动
-    pagination: {
-        el: '.swiper-pagination',
-        type: 'fraction',
-    },
-    observer:true,//修改swiper自己或子元素时，自动初始化swiper
-    observeParents:true,//修改swiper的父元素时，自动初始化swiper
-});
 
 //调用ajax代码
 //js获取url参数
@@ -22,7 +11,7 @@ function GetQueryString(name){
 var myresourceId=GetQueryString("resourceId");
 var imgType =GetQueryString("imgType");
 // 测试数据
-// var myresourceId="8e0111e7b93b3f959a25b9e1eca1af99";
+var myresourceId="8e0111e7b93b3f959a25b9e1eca1af99";
 $.ajax({
     type:"post",
     url:"http://www.dadpat.com/api/res/get.do",
@@ -39,6 +28,21 @@ $.ajax({
                 $("#header .swiper-wrapper").append('<div class="swiper-slide"><img style="width: 100%;" src="http://www.dadpat.com/'+datas.image.banners[i].attUrl+'" alt=""/></div>' );
             }  
         }
+        var mySwiper = new Swiper('#header', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },//可选选项，自动滑动
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'fraction',
+            },
+            // observer:true,//修改swiper自己或子元素时，自动初始化swiper
+            // observeParents:true,//修改swiper的父元素时，自动初始化swiper
+        });
         
         //获取动物名称
         var resourceTitle=datas.resourceTitle;
