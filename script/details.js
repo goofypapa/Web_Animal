@@ -11,7 +11,7 @@ function GetQueryString(name){
 var myresourceId=GetQueryString("resourceId");
 var imgType =GetQueryString("imgType");
 // 测试数据
-// var myresourceId="f71911e68de0a5adb7dece1f440e26cb";
+var myresourceId="cb3b11e6bf1701d2cf56e9cd8e2e80cc";
 $.ajax({
     type:"post",
     url:"http://www.dadpat.com/api/res/get.do",
@@ -105,7 +105,7 @@ $.ajax({
             if(datas.recordTime==null&&datas.recordPlace==null){
                 $("#audio ul").append('<li style="width: 33%;height:1.9rem;float:left;border-right: 1px solid rgba(255,255,255,0.1);"><p style="margin-top: 0.6rem;">'+[i+1]+'</p><!--动物声音播放动画--><span style="margin-left: 0rem;">'+myTime+'</span><img  src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="http://www.dadpat.com/'+datas.audio[i].attUrl+'"></li>')
             }else{
-                $("#audio ul").append('<li><p>'+[i+1]+'</p><!--动物声音播放动画--><div class="info"><p><img src="image/time.png" alt=""/><span>'+datas.recordTime+'</span><img src="image/add.png" alt=""/><span>'+datas.recordPlace+'</span></p></div><span>'+myTime+'</span><img src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="http://www.dadpat.com/'+datas.audio[i].attUrl+'"></li>')
+                $("#audio ul").append('<li><p>'+[i+1]+'</p><!--动物声音播放动画--><div class="info"><p><img src="image/time.png" alt=""/><span>'+datas.recordTime+'</span><img src="image/add.png" alt=""/><span>'+datas.recordPlace+'</span></p></div><span style="margin-left: 0.5rem;margin-top: 0.1rem">'+myTime+'</span><img style="margin-top: 0.5rem" src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="http://www.dadpat.com/'+datas.audio[i].attUrl+'"></li>')
             }
         }
         // 更改之后的声音播放js
