@@ -56,8 +56,8 @@ article>p{font-size: 0.6rem;color: rgba(255,255,255,0.8);margin: 0 0.57rem 0 0.5
 }
 
 /*音频的时长*/
-#audio ul li>span{float: left;color:#fff;width:2rem;height:1.9rem;font-size: 0.48rem;line-height: 1.9rem;margin-left: 1.2rem;}
-#audio ul li>img{float: right;width: 0.98rem;height: 0.98rem;margin-top: 0.5rem;margin-right: 0.3rem;}
+#audio>ul>li>span{color:#fff;font-size: 0.48rem;line-height: 1.9rem;float: left}
+#audio>ul>li>img{display:inline;width: 0.98rem;height: 0.98rem;margin-top: 0.4rem;margin-left: 0.7rem;}
 
 /*吃与被吃*/
 .eaten{width:100%}
