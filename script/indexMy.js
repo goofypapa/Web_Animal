@@ -32,7 +32,7 @@ window.onload = function()
 
     $.ajax({
         type: "post",
-        url: "http://www.dadpat.com/api/res/list/summary.do",
+        url: "https://www.goofypapa.com/api/res/list/summary.do",
         dataType: "jsonp",
         data: { "ownerId": myownerId }, //以键/值对的形式
         async: true,
@@ -58,7 +58,7 @@ window.onload = function()
             for(var i=0;i<animalId.length;i++){
                 $.ajax({
                     type: "post",
-                    url: "http://www.dadpat.com/api/res/get.do",
+                    url: "https://www.goofypapa.com/api/res/get.do",
                     dataType: "jsonp",
                     data: { "resId": animalId[i] }, //以键/值对的形式
                     async: true,
@@ -72,8 +72,8 @@ window.onload = function()
 
                         var t_item = $('<div class="swiper-slide"><div class="animal" style="background: -webkit-linear-gradient(left top,' +
                         indexAnimal.colorBegin + ',' + indexAnimal.colorEnd + ')"id="a1"><a href="details.html?resourceId=' + indexAnimal.resourceId +
-                        '&imgType=default"><img data-src="http://www.dadpat.com/' + indexAnimal.image.cover.attUrl +
-                        '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><span id="'+indexAnimal.audio.length+'" style="display:none;" name="'+indexAnimal.resourceId+'">http://www.dadpat.com/'+indexAnimal.audio[audioRandom].attUrl +'</span><img  src="image/gif.gif" class="swiperes" alt=""/><a onclick="opendetails(' +
+                        '&imgType=default"><img data-src="https://www.goofypapa.com' + indexAnimal.image.cover.attUrl +
+                        '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><span id="'+indexAnimal.audio.length+'" style="display:none;" name="'+indexAnimal.resourceId+'">https://www.goofypapa.com/'+indexAnimal.audio[audioRandom].attUrl +'</span><img  src="image/gif.gif" class="swiperes" alt=""/><a onclick="opendetails(' +
                         indexAnimal.resourceId + ')">' + indexAnimal.resourceTitle + '</a></div><p class="animalInfo">'+indexAnimal.simpleDesc+'</p></div></div>');
                     
 
@@ -200,7 +200,7 @@ function loadSuccess( indexAnimal ){
                 console.log(randomAnimalId);
                 $.ajax({
                     type: "post",
-                    url: "http://www.dadpat.com/api/res/get.do",
+                    url: "https://www.goofypapa.com/api/res/get.do",
                     dataType: "jsonp",
                     data: { "resId": randomAnimalId }, //以键/值对的形式
                     async: true,
@@ -212,7 +212,7 @@ function loadSuccess( indexAnimal ){
                         isAudoPlay = false;
                         console.log(swiper.realIndex);
                         console.log(allAudio[randomA].attUrl);
-                        myPlayAudio( "http://www.dadpat.com/"+allAudio[randomA].attUrl+"");
+                        myPlayAudio( "https://www.goofypapa.com/"+allAudio[randomA].attUrl+"");
                     }
                 });
             }

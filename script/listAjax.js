@@ -11,7 +11,7 @@ var myRecordTime=GetQueryString("recordTime");
 
 $.ajax({
     type: "post",
-    url: "http://www.dadpat.com/api/res/list.do",
+    url: "https://www.goofypapa.com/api/res/list.do",
     dataType: "jsonp",
     data:{"ownerId":myOwnerId},
     async: true,
@@ -26,7 +26,7 @@ $.ajax({
         console.log(datas);
         for(var i=0;i<datas.length;i++){
             //把录制时间、地点去掉了
-            $("#list").append('<li style="width:100%;height:6rem;display:block;background-image: url(http://www.dadpat.com/'+datas[i].headImage+');background-size:100% 6rem;"><div class="info" style="margin-top: 1.2rem"><div><p>'+datas[i].resourceTitle+'</p></div><div style="display:none">'+datas[i].resourceDesc+'</div></div></li>');
+            $("#list").append('<li style="width:100%;height:6rem;display:block;background-image: url(https://www.goofypapa.com/'+datas[i].headImage+');background-size:100% 6rem;"><div class="info" style="margin-top: 1.2rem"><div><p>'+datas[i].resourceTitle+'</p></div><div style="display:none">'+datas[i].resourceDesc+'</div></div></li>');
         }
         $("#list li").click(function(){
             var index = $(this).index();

@@ -14,7 +14,7 @@ var imgType =GetQueryString("imgType");
 // var myresourceId="cb3b11e6bf1701d2cf56e9cd8e2e80cc";
 $.ajax({
     type:"post",
-    url:"http://www.dadpat.com/api/res/get.do",
+    url:"https://www.goofypapa.com/api/res/get.do",
     dataType:"jsonp",
     data:{"resId":myresourceId}, //以键/值对的形式
     // data:{"resId":'8e4011e7b93b3f959a25b9e19140706f'}, //以键/值对的形式
@@ -25,7 +25,7 @@ $.ajax({
         console.log(data);
         if(datas.image.banners.length>0){
             for(var i=0;i<3;i++){        
-                $("#header .swiper-wrapper").append('<div class="swiper-slide"><img style="width: 100%;" src="http://www.dadpat.com/'+datas.image.banners[i].attUrl+'" alt=""/></div>' );
+                $("#header .swiper-wrapper").append('<div class="swiper-slide"><img style="width: 100%;" src="https://www.goofypapa.com/'+datas.image.banners[i].attUrl+'" alt=""/></div>' );
             }  
         }
         var mySwiper = new Swiper('#header', {
@@ -72,10 +72,10 @@ $.ajax({
             if(audioCe[i].audioType == 'PRON_CN'){
                 var audioInput = document.createElement("input");
                 audioInput.type="hidden";
-                audioInput.value='http://www.dadpat.com/'+audioCe[i].attUrl;
+                audioInput.value='https://www.goofypapa.com/'+audioCe[i].attUrl;
                 $("article>p").append(audioInput);
                 // $(".audioEnglish").remove();
-                // $('.audioEnglish').attr('src','http://www.dadpat.com/'+audioCe[i].attUrl)
+                // $('.audioEnglish').attr('src','https://www.goofypapa.com/'+audioCe[i].attUrl)
             }
         }
         //点击简介里的声音
@@ -103,9 +103,9 @@ $.ajax({
             }
             var myTime=myDuration>9?"0:"+myDuration:"0:0"+myDuration;
             if(datas.recordTime==null&&datas.recordPlace==null){
-                $("#audio ul").append('<li style="width: 33%;height:1.9rem;float:left;border-right: 1px solid rgba(255,255,255,0.1);"><p style="margin-top: 0.6rem;">'+[i+1]+'</p><!--动物声音播放动画--><span style="margin-left: 0rem;">'+myTime+'</span><img  src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="http://www.dadpat.com/'+datas.audio[i].attUrl+'"></li>')
+                $("#audio ul").append('<li style="width: 33%;height:1.9rem;float:left;border-right: 1px solid rgba(255,255,255,0.1);"><p style="margin-top: 0.6rem;">'+[i+1]+'</p><!--动物声音播放动画--><span style="margin-left: 0rem;">'+myTime+'</span><img  src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="https://www.goofypapa.com/'+datas.audio[i].attUrl+'"></li>')
             }else{
-                $("#audio ul").append('<li><p>'+[i+1]+'</p><!--动物声音播放动画--><div class="info"><p><img src="image/time.png" alt=""/><span>'+datas.recordTime+'</span><img src="image/add.png" alt=""/><span>'+datas.recordPlace+'</span></p></div><span style="margin-left: 0.5rem;margin-top: 0.1rem">'+myTime+'</span><img style="margin-top: 0.5rem" src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="http://www.dadpat.com/'+datas.audio[i].attUrl+'"></li>')
+                $("#audio ul").append('<li><p>'+[i+1]+'</p><!--动物声音播放动画--><div class="info"><p><img src="image/time.png" alt=""/><span>'+datas.recordTime+'</span><img src="image/add.png" alt=""/><span>'+datas.recordPlace+'</span></p></div><span style="margin-left: 0.5rem;margin-top: 0.1rem">'+myTime+'</span><img style="margin-top: 0.5rem" src="image/play.png" class="playAudio" alt=""/><input type="hidden" value="https://www.goofypapa.com/'+datas.audio[i].attUrl+'"></li>')
             }
         }
         // 更改之后的声音播放js
@@ -203,12 +203,12 @@ $.ajax({
         // }
 
         //简笔画模板
-        $('.handDrawModel').append('<img src="http://www.dadpat.com/'+datas.image.handDraw.attUrl+'">')
+        $('.handDrawModel').append('<img src="https://www.goofypapa.com/'+datas.image.handDraw.attUrl+'">')
 
         console.log()
         //设置动物的图片
         for(var i=0;i<6;i++){
-            $(".container").append('<div class="item"><a href="javascript:;"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file" alt=""/></a></div>');
+            $(".container").append('<div class="item"><a href="javascript:;"><img src="https://www.goofypapa.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file" alt=""/></a></div>');
         }
         var num = 6;
         $(".item img").load(function() {
@@ -255,14 +255,14 @@ $.ajax({
 //动态获取吃与被吃的图片
 $.ajax({
     type:"post",
-    url:"http://www.dadpat.com/foodChain/get.do",
+    url:"https://www.goofypapa.com/foodChain/get.do",
     dataType:"jsonp",
     data:{"resId":myresourceId}, //以键/值对的形式
     async:true,
     success:function (data) {
         var datas=data.data;
         console.log(datas.descImg);
-        $(".eaten").append('<img src=http://www.dadpat.com/'+datas.descImg+' style="width:100%">');
+        $(".eaten").append('<img src=https://www.goofypapa.com/'+datas.descImg+' style="width:100%">');
         $(".eaten").click(function () {
             // window.location.href="chain.html?resourceId=4a8511e8a69d112b84fd30494ea5baf6"
             window.location.href="chain.html?resourceId="+myresourceId
@@ -272,7 +272,7 @@ $.ajax({
 // 统计接口
 $.ajax({
     type:"post",
-    url:"http://www.dadpat.com/statistics/add.do",
+    url:"https://www.goofypapa.com/statistics/add.do",
     dataType:"jsonp",
     data:{"targetName":"BizRes","targetId":myresourceId}, //以键/值对的形式
     async:true,
@@ -374,7 +374,7 @@ $.ajax({
 //       	formData.append('file',docObj.files[0]);
 //           $.ajax({
 //         	type:"POST",
-//     		url:"http://www.dadpat.com/simpleDraw/saveSimple.do?animalId=" + myresourceId,
+//     		url:"https://www.goofypapa.com/simpleDraw/saveSimple.do?animalId=" + myresourceId,
 //     		data: formData, //以键/值对的形式
 //     		cache: false,
 // 			processData: false,

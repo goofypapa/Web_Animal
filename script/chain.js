@@ -8,7 +8,7 @@ var ajaxBox=function () {
     var myresId=GetQueryString("resourceId");
     $.ajax({
         type:"post",
-        url:"http://www.dadpat.com/foodChain/get.do",
+        url:"https://www.goofypapa.com/foodChain/get.do",
         dataType:"jsonp",
         data:{"resId":myresId}, //以键/值对的形式
         async:false,
@@ -44,7 +44,7 @@ var ajaxBox=function () {
                 'width': windowRealWidth,
                 'overflow': 'hidden'
             });
-            $('.magnify').append('<img src=http://www.dadpat.com/'+datas.bgImg+' class="backgroundImg">');
+            $('.magnify').append('<img src=https://www.goofypapa.com/'+datas.bgImg+' class="backgroundImg">');
             $('.backgroundImg').css({
                 'height': windowRealHeight,
                 'width': windowRealWidth,
@@ -77,7 +77,7 @@ var ajaxBox=function () {
                 'height':windowRealHeight/6,
                 'width':windowRealHeight/6,
             });
-            $("#mirror").append('<img src=http://www.dadpat.com/'+datas.fullImg+' id="fullImg">');
+            $("#mirror").append('<img src=https://www.goofypapa.com/'+datas.fullImg+' id="fullImg">');
             $('#fullImg').css({
                 'position':'absolute'
             });
@@ -144,18 +144,18 @@ var ajaxBox=function () {
                 /*获取上、中、下游的动、植物*/
                 if(itemLent[i].itemLocation=='up'){
                     //获取上游动物
-                    $(".chainDiv0").append('<div><span class="animalAll"><img src=http://www.dadpat.com/'+
+                    $(".chainDiv0").append('<div><span class="animalAll"><img src=https://www.goofypapa.com/'+
                         itemLent[i].itemImg+' alt="" class="img01" style="height:'+ Math.floor(itemLent[i].itemHeight / sourceHeight * windowRealHeight ) +'px; width:'
                         + Math.floor(itemLent[i].itemWidth / sourceWidth * windowRealWidth ) +'px;margin-left: '+ Math.floor(itemLent[i].itemLeft / sourceWidth * windowRealWidth ) +'px;margin-top:'+
                         Math.floor(itemLent[i].itemTop / sourceHeight * windowRealHeight )+'px ;"/><p style="margin-left: '+ Math.floor(itemLent[i].itemLeft / sourceWidth * windowRealWidth ) +'px">'+itemLent[i].itemName+'</p></span></div>')
                 }else if(itemLent[i].itemLocation=='self'){
-                    $(".chainDiv2").append('<div class="arrSelfTwo"><span class="animalAll"><img src=http://www.dadpat.com/'+
+                    $(".chainDiv2").append('<div class="arrSelfTwo"><span class="animalAll"><img src=https://www.goofypapa.com/'+
                         itemLent[i].itemImg+' alt="" class="img01" style="height:'+ Math.floor(itemLent[i].itemHeight / sourceHeight * windowRealHeight ) +'px; width:'
                         + Math.floor(itemLent[i].itemWidth / sourceWidth * windowRealWidth ) +'px;margin-left: '+ Math.floor(itemLent[i].itemLeft / sourceWidth * windowRealWidth ) +'px;margin-top:'+
                         Math.floor(itemLent[i].itemTop / sourceHeight * windowRealHeight )+'px ;"/><p style="margin-left: '+ Math.floor(itemLent[i].itemLeft / sourceWidth * windowRealWidth ) +'px">'+itemLent[i].itemName+'</p></span></div>')
                 }else if(itemLent[i].itemLocation=='down'){
                     //获取下游动物
-                    $(".chainDiv4").append('<div><span class="animalAll"><img src=http://www.dadpat.com/'+
+                    $(".chainDiv4").append('<div><span class="animalAll"><img src=https://www.goofypapa.com/'+
                         itemLent[i].itemImg+' alt="" class="img01" style="height:'+ Math.floor(itemLent[i].itemHeight / sourceHeight * windowRealHeight ) +'px; width:'
                         + Math.floor(itemLent[i].itemWidth / sourceWidth * windowRealWidth ) +'px;margin-left: '+ Math.floor(itemLent[i].itemLeft / sourceWidth * windowRealWidth ) +'px;margin-top:'+
                         Math.floor(itemLent[i].itemTop / sourceHeight * windowRealHeight )+'px ;"/><p style="margin-left: '+ Math.floor(itemLent[i].itemLeft / sourceWidth * windowRealWidth ) +'px">'+itemLent[i].itemName+'</p></span></div>')
@@ -203,19 +203,19 @@ var ajaxBox=function () {
                     if(pDesc[n].innerText == '猛禽'){
                 		pDesc[n].style.marginLeft = '2.5rem';
                     }
-                    if(imgDesc[n].src== 'http://www.dadpat.com/upload/20180518/5a5a11e8b7008d0059dd0b57477ef8aa.png'){
+                    if(imgDesc[n].src== 'https://www.goofypapa.com/upload/20180518/5a5a11e8b7008d0059dd0b57477ef8aa.png'){
                         pDesc[n].style.marginLeft = '1.2rem';
                     }
-                    if(imgDesc[n].src== 'http://www.dadpat.com/upload/20180905/b0d911e88ec45f21705f1db236d91c4c.png'){
+                    if(imgDesc[n].src== 'https://www.goofypapa.com/upload/20180905/b0d911e88ec45f21705f1db236d91c4c.png'){
                         pDesc[n].style.marginLeft = '-1.5rem';
                     }
-                    if(imgDesc[n].src== 'http://www.dadpat.com/upload/20180906/b19d11e88ec45f21705f1db260b11576.png'){
+                    if(imgDesc[n].src== 'https://www.goofypapa.com/upload/20180906/b19d11e88ec45f21705f1db260b11576.png'){
                         pDesc[n].style.marginLeft = '-1rem';
                     }
-                    if(imgDesc[n].src== 'http://www.dadpat.com/upload/20180906/b19e11e88ec45f21705f1db2d8f4a1c9.png'){
+                    if(imgDesc[n].src== 'https://www.goofypapa.com/upload/20180906/b19e11e88ec45f21705f1db2d8f4a1c9.png'){
                         pDesc[n].style.marginLeft = '1rem';
                     }
-                    if(imgDesc[n].src== 'http://www.dadpat.com/upload/20180829/ab2c11e8945481befe7496c044f09c1a.png'){
+                    if(imgDesc[n].src== 'https://www.goofypapa.com/upload/20180829/ab2c11e8945481befe7496c044f09c1a.png'){
                         pDesc[n].style.marginLeft = '6rem';
                     }
                     if(pDesc[n].innerText == '赤腹松鼠'){
@@ -229,7 +229,7 @@ var ajaxBox=function () {
                             imDesc.onclick=function () {
                                 $.ajax({
                                     type:"post",
-                                    url:"http://www.dadpat.com/resource/getResourceInfo.do",
+                                    url:"https://www.goofypapa.com/resource/getResourceInfo.do",
                                     dataType:"jsonp",
                                     data:{"resourceId":itemIdP}, //以键/值对的形式
                                     async:true,
@@ -286,7 +286,7 @@ var ajaxBox=function () {
                             });
                             $.ajax({
                                 type: "post",
-                                url: "http://www.dadpat.com/foodChain/item/list.do",
+                                url: "https://www.goofypapa.com/foodChain/item/list.do",
                                 dataType: "jsonp",
                                 data: {"ownerId": abc.itemId}, //以键/值对的形式
                                 async: true,
@@ -310,7 +310,7 @@ var ajaxBox=function () {
                                         e.stopPropagation()
                                     });
                                     for (var k = 0; k < listDatas.length; k++) {
-                                        $('.chainUlTwo').append('<li><img src=http://www.dadpat.com/'+ listDatas[k].itemImg + ' style="height:'+ Math.floor(listDatas[k].itemHeight / sourceHeight * windowRealHeight ) +'px; width:'+ Math.floor(listDatas[k].itemWidth / sourceWidth * windowRealWidth ) +'px;"/><p style="margin-bottom: 0.1rem">' + listDatas[k].itemName + '</p></li>')
+                                        $('.chainUlTwo').append('<li><img src=https://www.goofypapa.com/'+ listDatas[k].itemImg + ' style="height:'+ Math.floor(listDatas[k].itemHeight / sourceHeight * windowRealHeight ) +'px; width:'+ Math.floor(listDatas[k].itemWidth / sourceWidth * windowRealWidth ) +'px;"/><p style="margin-bottom: 0.1rem">' + listDatas[k].itemName + '</p></li>')
                                         var pDesc = document.querySelectorAll('.chainUlTwo p');
                                         for (var n=0;n<pDesc.length;n++){
                                         /*获取分类下动、植物的描述*/
@@ -364,7 +364,7 @@ var ajaxBox=function () {
                                                     imDescF.onclick=function () {
                                                         $.ajax({
                                                             type:"post",
-                                                            url:"http://www.dadpat.com/resource/getResourceInfo.do",
+                                                            url:"https://www.goofypapa.com/resource/getResourceInfo.do",
                                                             dataType:"jsonp",
                                                             data:{"resourceId":chirldItemId}, //以键/值对的形式
                                                             async:true,

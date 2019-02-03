@@ -11,7 +11,7 @@ var arrayAudio = [];
 var allOwnerId=["b50f11e6bddbe784523d7571e05bd41a","c7eb11e6bf1701d2cf56e9cd8d9bd25a","e1f811e68d9bbf6a4aa799bdde2479b0","fa4211e6ab8ea59afa157f6173462122","c99811e7b302bd97e4475a5f9f7f95bc","c99811e7b302bd97e4475a5fa49a0add"];
 // $.ajax({
 //     type: "post",
-//     url: "http://www.dadpat.com/api/res/batch/list/top.do",
+//     url: "https://www.goofypapa.com/api/res/batch/list/top.do",
 //     dataType: "jsonp", //以键/值对的形式
 //     async: true,
 //     success: function (data) {
@@ -24,7 +24,7 @@ var myownerId = allOwnerId[random];
 console.log(myownerId);
 $.ajax({
     type: "post",
-    url: "http://www.dadpat.com/api/res/list/summary.do",
+    url: "https://www.goofypapa.com/api/res/list/summary.do",
     dataType: "jsonp",
     data: { "ownerId": myownerId }, //以键/值对的形式
     async: true,
@@ -37,7 +37,7 @@ $.ajax({
             console.log(myresourceId)
             $.ajax({
                 type: "post",
-                url: "http://www.dadpat.com/api/res/get.do",
+                url: "https://www.goofypapa.com/api/res/get.do",
                 dataType: "jsonp",
                 data: { "resId": myresourceId }, //以键/值对的形式
                 async: true,
@@ -58,8 +58,8 @@ $.ajax({
                         });
                         $('#wrapper').append('<div class="swiper-slide"><div class="animal" style="background: -webkit-linear-gradient(left top,' +
                             datasC.colorBegin + ',' + datasC.colorEnd + ')"id="a1"><a href="details.html?resourceId=' + datasC.resourceId +
-                            '"><img data-src="http://www.dadpat.com/' + datasC.image.cover.attUrl +
-                            '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><audio src="http://www.dadpat.com/'+datasC.audio[audioRandom].attUrl +'" ></audio><img  src="image/voiced.png" class="swiperes" alt=""/><a onclick="opendetails(' +
+                            '"><img data-src="https://www.goofypapa.com/' + datasC.image.cover.attUrl +
+                            '" class="swiper-lazy" alt=""/><div class="swiper-lazy-preloader"></div></a><div class="voice"><audio src="https://www.goofypapa.com/'+datasC.audio[audioRandom].attUrl +'" ></audio><img  src="image/voiced.png" class="swiperes" alt=""/><a onclick="opendetails(' +
                             datasC.resourceId + ')">' + datasC.resourceTitle + '</a></div><p class="animalInfo">'+datasC.simpleDesc+'</p></div></div>');
                         $('.animal').css({
                             'width': Math.floor(0.73 * docuWidth),
@@ -90,7 +90,7 @@ $.ajax({
                         // arrayAudio.push(audio);
                         // console.log(arrayAudio);
 
-                        // $('.audioBox').append('<audio src="http://www.dadpat.com/' + datasC.audio[audioRandom].attUrl + '" autoplay></audio>');
+                        // $('.audioBox').append('<audio src="https://www.goofypapa.com/' + datasC.audio[audioRandom].attUrl + '" autoplay></audio>');
                     }
                     catch (err) {
 
@@ -183,11 +183,11 @@ function loadSwiper() {
             //     } else {
             //         audio = arrayAudio[inde]
             //     }
-            //     audioBox[inde].src = 'http://www.dadpat.com/' + audio.attUrl;
+            //     audioBox[inde].src = 'https://www.goofypapa.com/' + audio.attUrl;
             //     // if (inde) {
-            //     //     audioBox[inde].src = 'http://www.dadpat.com/' + audio.attUrl;
+            //     //     audioBox[inde].src = 'https://www.goofypapa.com/' + audio.attUrl;
             //     // } else {
-            //     //     audioBox[inde].src = 'http://www.dadpat.com/' + audio.attUrl;
+            //     //     audioBox[inde].src = 'https://www.goofypapa.com/' + audio.attUrl;
             //     // }
             //     for (var j = 0; j < imgClick.length; j++) {
             //         imgClick[j].onclick = '';

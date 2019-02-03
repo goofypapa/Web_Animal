@@ -15,7 +15,7 @@ if(myresourceId!=null&&myresourceId.toString().length>0)
 
 $.ajax({
     type:"post",
-    url:"http://www.dadpat.com/resource/get.do",
+    url:"https://www.goofypapa.com/resource/get.do",
     dataType:"jsonp",
     data:{"resourceId":myresourceId}, //以键/值对的形式
     async:true,

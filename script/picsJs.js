@@ -12,7 +12,7 @@ if(myresourceId!=null&&myresourceId.toString().length>0){
 }
 $.ajax({
     type:"post",
-    url:"http://www.dadpat.com/api/res/get.do",
+    url:"https://www.goofypapa.com/api/res/get.do",
     dataType:"jsonp",
     data:{"resId":myresourceId}, //以键/值对的形式
     // data:{"resId":'8e4011e7b93b3f959a25b9e19140706f'}, //以键/值对的形式
@@ -22,8 +22,8 @@ $.ajax({
         console.log(datas);
         var windowRealWidth = document.documentElement.clientWidth;
         for(var i=0;i<datas.image.defaults.length;i++){
-           $(".content").append('<div class="item"><a href="javascript:;"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file"/" /></a></div>')
-           $('#wrapper').append('<div class="swiper-slide" style="width: '+windowRealWidth+'"><img src="http://www.dadpat.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file"/></div>');
+           $(".content").append('<div class="item"><a href="javascript:;"><img src="https://www.goofypapa.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file"/" /></a></div>')
+           $('#wrapper').append('<div class="swiper-slide" style="width: '+windowRealWidth+'"><img src="https://www.goofypapa.com/resource/thumbnail/'+datas.image.defaults[i].attId+'.file"/></div>');
         }
 
         var num = datas.image.defaults.length;
